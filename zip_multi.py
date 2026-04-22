@@ -1,19 +1,12 @@
-import os
+from pathlib import Path
 import subprocess
 
 print("enter root directory path: ")
-root_directory_path = input()
+root_path = "H:\Not Backed Up\\test zip\Hello"
 
 print("enter zip file destination: ")
-zip_destination = input()
+zip_destination = "H:\Not Backed Up\\test zip\zipped hello"
 
-os.chdir(root_directory_path)
-subprocess.check_call(["powershell", "dir"])
-sub_directories = os.listdir(root_directory_path)
-
-
-
-for directory in sub_directories:
-    directory_name = '"' + directory + '"'
-    zip_name = '"' + zip_destination + "\\" + directory + '.7z"'
-    subprocess.call("7z " + "a " + zip_name + " " + directory_name)
+for sub_directory in root_path.iterdir():
+    if subdir.is_dir():
+        print(sub_directory)
