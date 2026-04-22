@@ -11,10 +11,9 @@ os.chdir(root_directory_path)
 subprocess.check_call(["powershell", "dir"])
 sub_directories = os.listdir(root_directory_path)
 
+
+
 for directory in sub_directories:
     directory_name = '"' + directory + '"'
     zip_name = '"' + zip_destination + "\\" + directory + '.7z"'
-    subprocess.call(["7z", "a", zip_name, directory_name])
-
-
-#     subprocess.call("7z " + "a " + zip_name + " " + directory_name)
+    subprocess.call("7z " + "a " + zip_name + " " + directory_name)
