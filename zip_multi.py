@@ -2,6 +2,9 @@ from pathlib import Path
 import subprocess
 import os
 
+# zips all directory and files in the root directory path into their respective folders 
+# and move them to a new location: zip file destination
+
 def main():
     print("enter root directory path: ")
     root_path = Path(input())
@@ -18,20 +21,18 @@ def main():
             if(dir_size > 0):
                 zip_tool = Zipper(zip_location)     
                 for deep_directory in sub_directory.iterdir():
-                    # print(deep_directory)
                     zip_tool.append_argument(deep_directory)
-                # print(zip_tool.get_argument())
+                zip_tool.zip_file()
         else:
             zip_tool = Zipper(zip_location) 
             zip_tool.append_argument(sub_directory)
-            # print(zip_tool.get_argument())
-            
+            zip_tool.zip_file()
 
 class Zipper:
     def __init__(self, zip_dir):
         self.process_arg = ["7z", "a", zip_dir]
 
-    def zip_file(self, zip_location):
+    def zip_file(self):
         subprocess.call(self.process_arg)
     
     def append_argument(self, input_arg):
@@ -39,7 +40,6 @@ class Zipper:
 
     def get_argument(self):
         return self.process_arg
-
 
 if __name__ == "__main__":
     main() 
