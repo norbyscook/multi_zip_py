@@ -17,8 +17,8 @@ def main():
         
         zip_location = zip_root.joinpath(sub_directory_name)
         if sub_directory.is_dir():
-            dir_size = len(os.listdir(sub_directory))
-            if(dir_size > 0):
+            directory_size = len(os.listdir(sub_directory))
+            if(directory_size > 0):
                 zip_tool = Zipper(zip_location)     
                 for deep_directory in sub_directory.iterdir():
                     zip_tool.append_argument(deep_directory)
