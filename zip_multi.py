@@ -15,16 +15,16 @@ def main():
     for sub_directory in root_path.iterdir():
         sub_directory_name = sub_directory.name
         
-        zip_location = zip_root.joinpath(sub_directory_name)
+        zipto_location = zip_root.joinpath(sub_directory_name)
         if sub_directory.is_dir():
             directory_size = len(os.listdir(sub_directory))
             if(directory_size > 0):
-                zip_tool = Zipper(zip_location)     
+                zip_tool = Zipper(zipto_location)     
                 for deep_directory in sub_directory.iterdir():
                     zip_tool.append_argument(deep_directory)
                 zip_tool.zip_file()
         else:
-            zip_tool = Zipper(zip_location) 
+            zip_tool = Zipper(zipto_location) 
             zip_tool.append_argument(sub_directory)
             zip_tool.zip_file()
 
