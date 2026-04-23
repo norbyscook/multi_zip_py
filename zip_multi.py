@@ -11,19 +11,23 @@ def main():
 
     print("enter zip file destination: ")
     zip_root = Path(input())
-
+    # sub directory is the directory we will zip
     for sub_directory in root_path.iterdir():
         sub_directory_name = sub_directory.name
         
         zipto_location = zip_root.joinpath(sub_directory_name)
+        # if sub directory is a folder
         if sub_directory.is_dir():
+            # optional: if folder is empty, don't zip
             directory_size = len(os.listdir(sub_directory))
             if(directory_size > 0):
                 zip_tool = Zipper(zipto_location)     
+                # zip items in sub directory in such a way that the zip file does not contain an extra layer of folder
                 for deep_directory in sub_directory.iterdir():
                     zip_tool.append_argument(deep_directory)
                 zip_tool.zip_file()
         else:
+            # zip single files directly into it's own folder
             zip_tool = Zipper(zipto_location) 
             zip_tool.append_argument(sub_directory)
             zip_tool.zip_file()
