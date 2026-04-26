@@ -13,9 +13,11 @@ def main():
     zip_root = Path(input())
     # sub directory is the directory we will zip
     for sub_directory in root_path.iterdir():
+
         sub_directory_name = sub_directory.name
-        
-        zipto_location = zip_root.joinpath(sub_directory_name)
+        sub_dir_zip_name = sub_directory_name + ".7z"
+        zipto_location = zip_root.joinpath(sub_dir_zip_name)
+
         # if sub directory is a folder
         if sub_directory.is_dir():
             # optional: if folder is empty, don't zip
